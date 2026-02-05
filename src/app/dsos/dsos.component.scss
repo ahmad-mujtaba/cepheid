@@ -1,0 +1,14 @@
+table.dso-table {
+    border-spacing: 0px;
+    border-collapse: separate;
+    td, th {
+        border-bottom: 1px solid var(--primary-color-light);;
+        padding:0.5rem;
+
+        .dso-cataloguename {
+            color: var(--primary-color-light);
+            font-size: 0.8rem;
+            display: block;
+        }
+    }
+}

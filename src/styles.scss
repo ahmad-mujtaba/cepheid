@@ -1,1 +1,65 @@
-/* You can add global styles to this file, and also import other style files */
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+
+
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+:root {
+  @include mat.checkbox-overrides((
+    label-text-color: rgb(170, 37, 37),
+    selected-checkmark-color: #ccc,
+    selected-icon-color: rgb(122, 40, 40),
+    selected-focus-icon-color: rgb(170, 37, 37),
+    selected-hover-icon-color: rgb(170, 37, 37),
+
+    unselected-icon-color: #333,
+    unselected-focus-icon-color: #aaa,
+    unselected-hover-icon-color: #aaa,
+  
+  ));
+}
+
+
+:root {
+  --main-bg-color: #0c0c0c;
+  --primary-color: rgb(170, 37, 37);
+  --primary-color-light: rgb(122, 40, 40);
+
+  --header-bg-color: #333;
+}
+
+
+html {
+  color-scheme: light dark;
+  @include mat.theme((
+    
+    color: (
+      theme-type: dark,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; background: var(--main-bg-color); }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: var(--primary-color)}
+
+.card {
+  padding: 1rem;
+  border-bottom: 1px solid #2f0d0d;
+
+  .card-subtitle {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--primary-color-light);
+  }
+
+  .card-hero {
+    font-size: 28px;
+    margin: 0.3em 0;
+    font-weight: bold;
+  }
+}

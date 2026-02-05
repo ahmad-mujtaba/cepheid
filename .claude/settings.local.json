@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:en.wikipedia.org)",
+      "WebFetch(domain:theskylive.com)",
+      "WebFetch(domain:www.constellation-guide.com)",
+      "WebFetch(domain:www.messier-objects.com)"
+    ]
+  }
+}

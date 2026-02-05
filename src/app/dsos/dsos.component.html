@@ -1,0 +1,32 @@
+<div class="card">
+    <section  [formGroup]="selectedTypes">    
+        @for (type of types; track type) {
+            <mat-checkbox color="black" [formControlName]="type" (change)="change()">{{type}}</mat-checkbox>
+        }
+      </section>
+  
+      <table class="dso-table"> 
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Mag</th>
+            <th>Visible</th>
+        </tr>
+      @for (dso of dsos; track dso.id) {
+        <tr>
+            <td class="dso-name"><span class='dso-cataloguename'>{{dso.catalogue}}</span>{{dso.common_name}}</td>
+            <td>{{dso.type}}</td>
+            <td>{{dso.magnitude}}</td>
+            <td>{{dso.visibility.visibleDuration | prettyTime}}</td>
+        </tr>
+      }
+      @empty {
+        <tr>
+          <td colspan="4">
+            Loading...
+          </td>
+        </tr>
+      }
+
+      </table>
+</div>
