@@ -1,16 +1,22 @@
-<div class="moon-info card">
-    <div class="card-subtitle">MOON</div>
-    <div class="card-title">
-         <div class="card-hero">
-            {{phaseFraction}}% / {{phase}}
-         </div>
+<div class="card moon-card">
+    <div class="card-label">Moon</div>
 
-         
+    <div class="moon-display">
+        <div class="moon-visual">
+            <div class="moon-disc" [class.waning]="phaseAngle > 180">
+                <div class="moon-lit" [style.width.%]="getMoonWidth()"></div>
+            </div>
+        </div>
+        <div class="moon-stats">
+            <div class="phase-name">{{phase}}</div>
+            <div class="illumination">{{phaseFraction}}% illuminated</div>
+        </div>
     </div>
-    <div class="card-footer">
-        {{nextMoonStr}}
-    </div>
-    <div class="card-footer">
-        {{moonWindowStr}}
+
+    <div class="moon-details">
+        <div class="detail-row">{{nextMoonStr}}</div>
+        @if (moonWindowStr) {
+            <div class="detail-row highlight">{{moonWindowStr}}</div>
+        }
     </div>
 </div>

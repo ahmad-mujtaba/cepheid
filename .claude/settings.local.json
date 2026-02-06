@@ -5,7 +5,9 @@
       "WebFetch(domain:en.wikipedia.org)",
       "WebFetch(domain:theskylive.com)",
       "WebFetch(domain:www.constellation-guide.com)",
-      "WebFetch(domain:www.messier-objects.com)"
+      "WebFetch(domain:www.messier-objects.com)",
+      "Bash(npx ng build)",
+      "Bash(npm run build:*)"
     ]
   }
 }

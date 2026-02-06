@@ -1,5 +1,5 @@
-export const DEFAULT_LATITUDE = "18.5";
-export const DEFAULT_LONGITUDE = "78.5";
+export const DEFAULT_LATITUDE = 18.5;
+export const DEFAULT_LONGITUDE = 78.5;
 export const DARK_ALTITUDE = -18;
 export const DAWN_ALTITUDE  = 18;
 export const FORMAT_TIME = "h:mma";

@@ -1,16 +1,16 @@
-<div class="night-info card">
-    <div class="card-subtitle">{{isDaylight ? 'Dark in' : 'Dawn in'}}</div>
-    <div class="card-title">
-        <div class="nextTime">
-            {{nextTimeStr}}
-         </div>
-         <div class="card-hero">
-            {{timeToChangeStr}}
-         </div>
-
-         
+<div class="card night-card">
+    <div class="card-label">
+        <span class="status-dot" [class.daylight]="isDaylight"></span>
+        {{isDaylight ? 'Daylight' : 'Night'}}
     </div>
-    <div class="card-footer">
+
+    <div class="countdown">
+        <div class="countdown-label">{{isDaylight ? 'Dark in' : 'Dawn in'}}</div>
+        <div class="countdown-value">{{timeToChangeStr}}</div>
+        <div class="countdown-target">at {{nextTimeStr}}</div>
+    </div>
+
+    <div class="sun-info">
         {{nextSunStr}}
     </div>
 </div>

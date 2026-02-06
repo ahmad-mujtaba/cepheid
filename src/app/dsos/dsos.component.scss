@@ -1,14 +1,171 @@
-table.dso-table {
-    border-spacing: 0px;
-    border-collapse: separate;
-    td, th {
-        border-bottom: 1px solid var(--primary-color-light);;
-        padding:0.5rem;
+.dso-container {
+  background: var(--card-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
 
-        .dso-cataloguename {
-            color: var(--primary-color-light);
-            font-size: 0.8rem;
-            display: block;
-        }
-    }
+.dso-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--primary-color);
+  margin: 0;
+}
+
+.object-count {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.85rem;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  text-transform: capitalize;
+
+  &:hover {
+    border-color: var(--primary-color-light);
+    color: var(--text-primary);
+  }
+
+  &.active {
+    background: var(--primary-color-dark);
+    border-color: var(--primary-color);
+    color: var(--text-primary);
+  }
+}
+
+.dso-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+}
+
+.dso-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: var(--primary-color-light);
+    background: rgba(255, 255, 255, 0.04);
+  }
+}
+
+.dso-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.dso-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dso-catalogue {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+}
+
+.dso-stats {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 50px;
+}
+
+.stat-value {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.stat-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--text-muted);
+  margin-top: 0.1rem;
+}
+
+.type-stat {
+  min-width: 70px;
+}
+
+.dso-type {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--primary-color);
+  background: var(--primary-color-dark);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  color: var(--text-muted);
+  gap: 1rem;
+}
+
+.loading-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--border-color);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }

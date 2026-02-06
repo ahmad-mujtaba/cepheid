@@ -1,0 +1,91 @@
+.moon-card {
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.moon-display {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+.moon-visual {
+  flex-shrink: 0;
+}
+
+.moon-disc {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #1a1a1a;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 12px rgba(180, 175, 160, 0.1);
+
+  // Waxing: lit portion grows from right
+  .moon-lit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(to left, #e8e4d8 0%, #d0ccc0 100%);
+    border-radius: 0 50% 50% 0;
+    transition: width 0.3s ease;
+  }
+
+  // Waning: lit portion shrinks from left
+  &.waning .moon-lit {
+    right: auto;
+    left: 0;
+    background: linear-gradient(to right, #e8e4d8 0%, #d0ccc0 100%);
+    border-radius: 50% 0 0 50%;
+  }
+}
+
+.moon-stats {
+  flex: 1;
+}
+
+.phase-name {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 0.2rem;
+}
+
+.illumination {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.moon-details {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.detail-row {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.35rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &.highlight {
+    color: var(--primary-color);
+  }
+}

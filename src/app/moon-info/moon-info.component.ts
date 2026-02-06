@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AstroTime, Body, Illumination, IlluminationInfo, MoonPhase, Observer, SearchAltitude, SearchRiseSet } from 'astronomy-engine';
 import { DARK_ALTITUDE, FORMAT_TIME, MOON_PHASES } from '../services/constants/app.constants';
 import { GeolocationService } from '../services/geolocation.service';
@@ -12,76 +11,76 @@ import { durationToString } from '../util/utility';
   templateUrl: './moon-info.component.html',
   styleUrl: './moon-info.component.scss'
 })
-export class MoonInfoComponent implements OnInit {
+export class MoonInfoComponent implements OnInit, OnDestroy {
   phase: string = '';
   nextMoonStr: string = '';
 
   phaseFraction: number = 0;
+  phaseAngle: number = 0;
   illuminationInfo: IlluminationInfo | undefined;
   itvlId: any;
   moonWindowStr: string = '';
 
   constructor(private geolocationService: GeolocationService) {
-
-    this.render();
-    this.itvlId = setInterval(() => this.render.bind(this), 10000);
-
-
-
-  }
-
-  render() {
-
-    
-      const position = this.geolocationService.getGeolocation();
-      const observer = new Observer(position.latitude, position.longitude, 0);
-
-      const dateNow = new Date();
-      const moonPhaseAngle = MoonPhase(dateNow);
-      this.phase = this.getMoonPhaseName(moonPhaseAngle);
-
-      this.illuminationInfo = Illumination(Body.Moon, dateNow);
-
-      this.phaseFraction = Math.round(this.illuminationInfo.phase_fraction * 100);
-
-      const moonset = SearchRiseSet(Body.Moon, observer, -1, dateNow, 365);
-      const moonrise = SearchRiseSet(Body.Moon, observer, 1, dateNow, 365);
-
-      const nextDarkTime = SearchAltitude(Body.Sun, observer, -1, dateNow, 365, DARK_ALTITUDE);
-      const nextDawnTime = SearchAltitude(Body.Sun, observer, 1, dateNow, 365, DARK_ALTITUDE);
-
-
-
-      if (moonset && moonrise) {
-        if (moonset?.tt < moonrise?.tt) {
-          this.nextMoonStr = 'Moonset at ' + moment(moonset?.toString()).format(FORMAT_TIME);
-        } else {
-          this.nextMoonStr = 'Moonrise at ' + moment(moonrise?.toString()).format(FORMAT_TIME);
-
-        }
-
-        if (nextDarkTime && nextDawnTime) {
-          if (moonrise.tt > nextDarkTime.tt) {
-            this.moonWindowStr = 'Dark : ' + this.getDiffDuration(moonrise, nextDarkTime) + ' from ' +  moment(nextDarkTime?.toString()).format(FORMAT_TIME) + ' to ' + (nextDawnTime.tt > moonrise.tt ? moment(moonrise?.toString()).format(FORMAT_TIME) : moment(nextDawnTime?.toString()).format(FORMAT_TIME));
-          } else if (moonset.tt < nextDawnTime.tt) {
-            this.moonWindowStr = 'Dark : ' + this.getDiffDuration(moonset, nextDawnTime) + ' from ' +  moment(moonset?.toString()).format(FORMAT_TIME) + ' to ' + moment(nextDawnTime?.toString()).format(FORMAT_TIME);
-          }
-        }
-      }
-      
-    
   }
 
   ngOnInit(): void {
-
+    this.render();
+    this.itvlId = setInterval(() => this.render(), 10000);
   }
 
-  getDiffDuration(astroTime1:AstroTime, astroTime2: AstroTime) {
-    return durationToString(moment.duration(moment(astroTime1.toString()).diff(astroTime2.toString())));
+  render() {
+    const position = this.geolocationService.getGeolocation();
+    const observer = new Observer(position.latitude, position.longitude, 0);
+
+    const dateNow = new Date('Feb 14 2026 22:21:16 GMT+0530 (India Standard Time)');
+    const moonPhaseAngle = MoonPhase(dateNow);
+    this.phaseAngle = moonPhaseAngle;
+    this.phase = this.getMoonPhaseName(moonPhaseAngle);
+
+    this.illuminationInfo = Illumination(Body.Moon, dateNow);
+
+    this.phaseFraction = Math.round(this.illuminationInfo.phase_fraction * 100);
+
+    const moonset = SearchRiseSet(Body.Moon, observer, -1, dateNow, 365);
+    const moonrise = SearchRiseSet(Body.Moon, observer, 1, dateNow, 365);
+
+    const nextDarkTime = SearchAltitude(Body.Sun, observer, -1, dateNow, 365, DARK_ALTITUDE);
+    const nextDawnTime = SearchAltitude(Body.Sun, observer, 1, dateNow, 365, DARK_ALTITUDE);
+
+    if (moonset && moonrise) {
+      if (moonset?.tt < moonrise?.tt) {
+        this.nextMoonStr = 'Moonset at ' + moment(moonset.date).format(FORMAT_TIME);
+      } else {
+        this.nextMoonStr = 'Moonrise at ' + moment(moonrise.date).format(FORMAT_TIME);
+      }
+
+      if (nextDarkTime && nextDawnTime) {
+        if (moonrise.tt > nextDarkTime.tt) {
+          this.moonWindowStr = 'Dark : ' + this.getDiffDuration(moonrise, nextDarkTime) + ' from ' + moment(nextDarkTime.date).format(FORMAT_TIME) + ' to ' + (nextDawnTime.tt > moonrise.tt ? moment(moonrise.date).format(FORMAT_TIME) : moment(nextDawnTime.date).format(FORMAT_TIME));
+        } else if (moonset.tt < nextDawnTime.tt) {
+          this.moonWindowStr = 'Dark : ' + this.getDiffDuration(moonset, nextDawnTime) + ' from ' + moment(moonset.date).format(FORMAT_TIME) + ' to ' + moment(nextDawnTime.date).format(FORMAT_TIME);
+        }
+      }
+    }
+  }
+
+  getDiffDuration(astroTime1: AstroTime, astroTime2: AstroTime) {
+    return durationToString(moment.duration(moment(astroTime1.date).diff(moment(astroTime2.date))));
   }
 
   ngOnDestroy() {
     clearInterval(this.itvlId);
+  }
+
+  getMoonWidth(): number {
+    // Convert phase angle to illumination width for visual display
+    // 0° = new moon (0%), 90° = first quarter (50%), 180° = full (100%), 270° = third quarter (50%)
+    if (this.phaseAngle <= 180) {
+      return (this.phaseAngle / 180) * 100;
+    } else {
+      return ((360 - this.phaseAngle) / 180) * 100;
+    }
   }
 
   getMoonPhaseName(phaseAngle: number) {
@@ -109,8 +108,4 @@ export class MoonInfoComponent implements OnInit {
     }
     return phaseNameStr;
   }
-  
-
-
-
 }

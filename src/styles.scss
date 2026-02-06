@@ -1,65 +1,179 @@
-
 // Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
 
-
-// Customize the entire app. Change :root to your selector if you want to scope the styles.
 :root {
-  @include mat.checkbox-overrides((
-    label-text-color: rgb(170, 37, 37),
-    selected-checkmark-color: #ccc,
-    selected-icon-color: rgb(122, 40, 40),
-    selected-focus-icon-color: rgb(170, 37, 37),
-    selected-hover-icon-color: rgb(170, 37, 37),
+  --main-bg-color: #0a0a0a;
+  --card-bg-color: #111111;
+  --card-bg-hover: #161616;
+  --primary-color: #c43c3c;
+  --primary-color-light: #8a3030;
+  --primary-color-dark: #5a1f1f;
+  --text-primary: #e8e8e8;
+  --text-secondary: #888888;
+  --text-muted: #555555;
+  --border-color: #2a1515;
+  --border-subtle: #1a1010;
 
-    unselected-icon-color: #333,
-    unselected-focus-icon-color: #aaa,
-    unselected-hover-icon-color: #aaa,
-  
+  @include mat.checkbox-overrides((
+    label-text-color: var(--primary-color),
+    selected-checkmark-color: #fff,
+    selected-icon-color: var(--primary-color),
+    selected-focus-icon-color: var(--primary-color),
+    selected-hover-icon-color: var(--primary-color),
+    unselected-icon-color: #444,
+    unselected-focus-icon-color: #666,
+    unselected-hover-icon-color: #666,
   ));
 }
-
-
-:root {
-  --main-bg-color: #0c0c0c;
-  --primary-color: rgb(170, 37, 37);
-  --primary-color-light: rgb(122, 40, 40);
-
-  --header-bg-color: #333;
-}
-
 
 html {
-  color-scheme: light dark;
+  color-scheme: dark;
   @include mat.theme((
-    
     color: (
       theme-type: dark,
-      primary: mat.$azure-palette,
-      tertiary: mat.$blue-palette,
+      primary: mat.$red-palette,
+      tertiary: mat.$red-palette,
     ),
     typography: Roboto,
-    density: 0,
+    density: -1,
   ));
-}/* You can add global styles to this file, and also import other style files */
+}
 
-html, body { height: 100%; background: var(--main-bg-color); }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: var(--primary-color)}
+html, body {
+  height: 100%;
+  background: var(--main-bg-color);
+  margin: 0;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.5;
+}
 
+// Card System
 .card {
-  padding: 1rem;
-  border-bottom: 1px solid #2f0d0d;
+  background: var(--card-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  transition: border-color 0.2s ease;
 
-  .card-subtitle {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    color: var(--primary-color-light);
+  &:hover {
+    border-color: var(--primary-color-light);
+  }
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.card-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.card-value {
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.card-value-lg {
+  font-size: 2.5rem;
+  font-weight: 200;
+}
+
+.card-meta {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+// Grid Layout
+.grid-row {
+  display: grid;
+  gap: 1rem;
+
+  &.cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+// Progress bar
+.progress-bar {
+  height: 4px;
+  background: var(--border-color);
+  border-radius: 2px;
+  overflow: hidden;
+  margin: 0.75rem 0;
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color-dark), var(--primary-color));
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+}
+
+// Filter chips
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.75rem;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+
+  &:hover {
+    border-color: var(--primary-color-light);
+    color: var(--text-primary);
   }
 
-  .card-hero {
-    font-size: 28px;
-    margin: 0.3em 0;
-    font-weight: bold;
+  &.active {
+    background: var(--primary-color-dark);
+    border-color: var(--primary-color);
+    color: var(--text-primary);
+  }
+
+  .chip-icon {
+    font-size: 0.9rem;
+  }
+}
+
+// Scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--main-bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color-dark);
+  border-radius: 4px;
+
+  &:hover {
+    background: var(--primary-color-light);
   }
 }

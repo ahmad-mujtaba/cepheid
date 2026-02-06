@@ -1,8 +1,30 @@
 header {
-    padding: 2rem 0rem 2rem 1rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size:24px;
-    color: var(--primary-color-light);
-    border-bottom: 5px solid var(--primary-color-light);
+  padding: 1.25rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  background: linear-gradient(180deg, rgba(20, 10, 10, 0.8), transparent);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-icon {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+.logo-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--primary-color);
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }

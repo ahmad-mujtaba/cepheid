@@ -1,8 +1,6 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { AstronomyService } from '../services/astronomy.service';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { JsonPipe } from '@angular/common';
-import { MatCheckboxModule} from '@angular/material/checkbox';
 import { DSO } from '../interfaces/app.interface';
 import { PrettyTimePipe } from "../pretty-time.pipe";
 
@@ -10,15 +8,17 @@ import { PrettyTimePipe } from "../pretty-time.pipe";
   selector: 'app-dsos',
   templateUrl: './dsos.component.html',
   styleUrl: './dsos.component.scss',
-  imports: [FormsModule, ReactiveFormsModule, JsonPipe, MatCheckboxModule, PrettyTimePipe],
+  imports: [FormsModule, ReactiveFormsModule, PrettyTimePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  
+
 })
 export class DsosComponent implements OnInit {
 
+  private readonly _cdr = inject(ChangeDetectorRef);
 
   change() {
     this.render();
+    this._cdr.markForCheck();
   }
 
   types:Set<string> = new Set();
@@ -39,18 +39,14 @@ export class DsosComponent implements OnInit {
 
     this.render();
 
-    
-    
+
 
   }
 
-  render() {    
+  render() {
     this.astronomyService.sortByMagnitude();
     this.dsos = this.astronomyService.getDsos(this.selectedTypes.value);
     this.types = this.astronomyService.getTypes();
-
-    console.log('[debug] dsos', this.dsos);
-
   }
 
 }
