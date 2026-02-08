@@ -46,5 +46,27 @@ export interface DSOVisibility {
     setTime: AstroTime | null,
     visibleDuration: number,
     visibleTonight: boolean,
+    transitTime: AstroTime | null,
+    transitAltitude: number,
+}
 
+export interface PlanetInfo {
+    name: string;
+    altitude: number;
+    azimuth: number;
+    magnitude: number;
+    riseTime: string;
+    setTime: string;
+    transitTime: string;
+    transitAltitude: number;
+    constellation: string;
+    isUp: boolean;
+    elongation: number;
+}
+
+export interface AstroEvent {
+    name: string;
+    date: Date;
+    description: string;
+    type: 'lunar-eclipse' | 'solar-eclipse' | 'season';
 }

@@ -4,7 +4,7 @@ import { caldwellObjects } from '../../caldwell';
 import { astrophotoObjects } from '../../astrophoto';
 import { CelestialObject } from '../types/celestialobject.type';
 import { Coordinates, DSO, DSO_TYPE, DSOVisibility } from '../interfaces/app.interface';
-import { DefineStar, Body, SearchAltitude, Observer, AstroTime, Horizon, HorizontalCoordinates } from 'astronomy-engine';
+import { DefineStar, Body, SearchAltitude, SearchHourAngle, Observer, AstroTime, Horizon, HorizontalCoordinates } from 'astronomy-engine';
 import { raToHours, decToDegrees } from '../util/utility';
 import { GeolocationService } from './geolocation.service';
 import { DARK_ALTITUDE } from './constants/app.constants';
@@ -25,7 +25,7 @@ export class AstronomyService {
     this.observerLocation = this.geolocationService.getGeolocation();
 
     this.observer = new Observer(this.observerLocation!.latitude, this.observerLocation!.longitude, 0);
-    const now = new Date('Fri Feb 14 2026 22:21:16 GMT+0530 (India Standard Time)');
+    const now = new Date();
 
     this.nextDarkTime = SearchAltitude(Body.Sun, this.observer, -1, now, 365, DARK_ALTITUDE);
     this.nextDawnTime = SearchAltitude(Body.Sun, this.observer, 1, now, 365, DARK_ALTITUDE);
@@ -60,8 +60,17 @@ export class AstronomyService {
     try {
       DefineStar(Body.Star1, raHours, decDeg, 9999);
 
+      // Compute transit (meridian crossing) — next from now
+      let transitTime: AstroTime | null = null;
+      let transitAltitude = 0;
+      try {
+        const transit = SearchHourAngle(Body.Star1, this.observer!, 0, new Date());
+        transitTime = transit.time;
+        transitAltitude = Math.round(transit.hor.altitude * 10) / 10;
+      } catch (_) {}
+
       if (!this.nextDarkTime || !this.nextDawnTime) {
-        return { setTime: null, riseTime: null, visibleDuration: 0, visibleTonight: false };
+        return { setTime: null, riseTime: null, visibleDuration: 0, visibleTonight: false, transitTime, transitAltitude };
       }
 
       // Determine dark window
@@ -132,6 +141,8 @@ export class AstronomyService {
         riseTime,
         visibleDuration: Math.max(0, visibleHours),
         visibleTonight,
+        transitTime,
+        transitAltitude,
       };
     } catch (ex) {
       console.error('error while processing ' + o.common_name);
@@ -142,6 +153,8 @@ export class AstronomyService {
       riseTime: null,
       visibleDuration: 0,
       visibleTonight: false,
+      transitTime: null,
+      transitAltitude: 0,
     };
   }
 

@@ -1,0 +1,46 @@
+<div class="planets-container">
+    <div class="planets-header">
+        <h2 class="section-title">Planets</h2>
+        <span class="object-count">{{planets.length}} planets</span>
+    </div>
+
+    <div class="planet-list">
+        @for (planet of planets; track planet.name) {
+            <div class="planet-card" [class.above-horizon]="planet.isUp">
+                <div class="planet-main">
+                    <div class="planet-name">
+                        <span class="status-dot" [class.up]="planet.isUp"></span>
+                        {{planet.name}}
+                    </div>
+                    <div class="planet-constellation">{{planet.constellation}}</div>
+                </div>
+                <div class="planet-stats">
+                    <div class="stat">
+                        <span class="stat-label">alt</span>
+                        <span class="stat-value">{{planet.altitude}}°</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">mag</span>
+                        <span class="stat-value">{{planet.magnitude}}</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">elong</span>
+                        <span class="stat-value">{{planet.elongation}}°</span>
+                    </div>
+                    <div class="stat timing">
+                        <span class="stat-label">rise</span>
+                        <span class="stat-value">{{planet.riseTime}}</span>
+                    </div>
+                    <div class="stat timing">
+                        <span class="stat-label">transit</span>
+                        <span class="stat-value">{{planet.transitTime}}</span>
+                    </div>
+                    <div class="stat timing">
+                        <span class="stat-label">set</span>
+                        <span class="stat-value">{{planet.setTime}}</span>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

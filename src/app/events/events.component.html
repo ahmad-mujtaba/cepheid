@@ -1,0 +1,21 @@
+<div class="events-container">
+    <div class="events-header">
+        <h2 class="section-title">Upcoming Events</h2>
+    </div>
+
+    <div class="event-list">
+        @for (event of events; track event.name + event.date) {
+            <div class="event-card" [attr.data-type]="event.type">
+                <div class="event-type-indicator" [class]="event.type"></div>
+                <div class="event-main">
+                    <div class="event-name">{{event.name}}</div>
+                    <div class="event-desc">{{event.description}}</div>
+                </div>
+                <div class="event-date">
+                    <div class="event-date-value">{{formatDate(event.date)}}</div>
+                    <div class="event-date-relative">{{formatTimeDistance(event.date)}}</div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

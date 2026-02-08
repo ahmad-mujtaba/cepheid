@@ -3,14 +3,34 @@
 
     <div class="moon-display">
         <div class="moon-visual">
-            <div class="moon-disc" [class.waning]="phaseAngle > 180">
-                <div class="moon-lit" [style.width.%]="getMoonWidth()"></div>
-            </div>
+            
+            <app-moon-phase></app-moon-phase>
         </div>
         <div class="moon-stats">
             <div class="phase-name">{{phase}}</div>
             <div class="illumination">{{phaseFraction}}% illuminated</div>
         </div>
+    </div>
+
+    <div class="moon-data">
+        <div class="data-row">
+            <span class="data-label">Age</span>
+            <span class="data-value">{{moonAgeDays}} days</span>
+        </div>
+        <div class="data-row">
+            <span class="data-label">Distance</span>
+            <span class="data-value">{{distanceKm | number}} km</span>
+        </div>
+        <div class="data-row">
+            <span class="data-label">{{nextApsisType}}</span>
+            <span class="data-value">{{nextApsisDate}} · {{nextApsisDistKm | number}} km</span>
+        </div>
+        @if (supermoonDate) {
+            <div class="data-row highlight">
+                <span class="data-label">Supermoon</span>
+                <span class="data-value">{{supermoonDate}} · {{supermoonDistKm | number}} km</span>
+            </div>
+        }
     </div>
 
     <div class="moon-details">

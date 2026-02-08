@@ -36,7 +36,7 @@ export class NightComponent implements OnInit, OnDestroy {
   render() {
     const location = this.geolocationService.getGeolocation();
     const observer = new Observer(location.latitude, location.longitude, 0);
-    const now = new Date('Feb 14 2026 22:21:16 GMT+0530 (India Standard Time)');
+    const now = new Date();
 
     const nextDarkTime = SearchAltitude(Body.Sun, observer, -1, now, 365, DARK_ALTITUDE);
     const nextDawnTime = SearchAltitude(Body.Sun, observer, 1, now, 365, DARK_ALTITUDE);

@@ -1,13 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AstroTime, Body, Illumination, IlluminationInfo, MoonPhase, Observer, SearchAltitude, SearchRiseSet } from 'astronomy-engine';
+import { AstroTime, Body, Illumination, IlluminationInfo, Libration, MoonPhase, Observer, SearchAltitude, SearchLunarApsis, SearchMoonPhase, SearchRiseSet } from 'astronomy-engine';
 import { DARK_ALTITUDE, FORMAT_TIME, MOON_PHASES } from '../services/constants/app.constants';
 import { GeolocationService } from '../services/geolocation.service';
 import moment from 'moment';
 import { durationToString } from '../util/utility';
+import { MoonPhaseComponent } from '../moon-phase/moon-phase.component';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-moon-info',
-  imports: [],
+  imports: [MoonPhaseComponent, DecimalPipe],
   templateUrl: './moon-info.component.html',
   styleUrl: './moon-info.component.scss'
 })
@@ -21,6 +23,14 @@ export class MoonInfoComponent implements OnInit, OnDestroy {
   itvlId: any;
   moonWindowStr: string = '';
 
+  moonAgeDays: number = 0;
+  distanceKm: number = 0;
+  nextApsisType: string = '';
+  nextApsisDate: string = '';
+  nextApsisDistKm: number = 0;
+  supermoonDate: string = '';
+  supermoonDistKm: number = 0;
+
   constructor(private geolocationService: GeolocationService) {
   }
 
@@ -33,7 +43,7 @@ export class MoonInfoComponent implements OnInit, OnDestroy {
     const position = this.geolocationService.getGeolocation();
     const observer = new Observer(position.latitude, position.longitude, 0);
 
-    const dateNow = new Date('Feb 14 2026 22:21:16 GMT+0530 (India Standard Time)');
+    const dateNow = new Date();
     const moonPhaseAngle = MoonPhase(dateNow);
     this.phaseAngle = moonPhaseAngle;
     this.phase = this.getMoonPhaseName(moonPhaseAngle);
@@ -61,6 +71,42 @@ export class MoonInfoComponent implements OnInit, OnDestroy {
         } else if (moonset.tt < nextDawnTime.tt) {
           this.moonWindowStr = 'Dark : ' + this.getDiffDuration(moonset, nextDawnTime) + ' from ' + moment(moonset.date).format(FORMAT_TIME) + ' to ' + moment(nextDawnTime.date).format(FORMAT_TIME);
         }
+      }
+    }
+
+    // Moon age (days since last new moon)
+    const thirtyDaysAgo = new Date(dateNow.getTime() - 30 * 24 * 60 * 60 * 1000);
+    const lastNewMoon = SearchMoonPhase(0, thirtyDaysAgo, 30);
+    if (lastNewMoon) {
+      this.moonAgeDays = Math.round(((dateNow.getTime() - lastNewMoon.date.getTime()) / (24 * 60 * 60 * 1000)) * 10) / 10;
+    }
+
+    // Current distance
+    const libration = Libration(dateNow);
+    this.distanceKm = Math.round(libration.dist_km);
+
+    // Next perigee or apogee
+    const nextApsis = SearchLunarApsis(dateNow);
+    this.nextApsisType = nextApsis.kind === 0 ? 'Perigee' : 'Apogee';
+    this.nextApsisDate = moment(nextApsis.time.date).format('D MMM');
+    this.nextApsisDistKm = Math.round(nextApsis.dist_km);
+
+    // Next supermoon (full moon with distance < 362,000 km)
+    this.supermoonDate = '';
+    this.supermoonDistKm = 0;
+    let searchFrom = dateNow;
+    for (let i = 0; i < 13; i++) {
+      const fullMoon = SearchMoonPhase(180, searchFrom, 35);
+      if (fullMoon) {
+        const lib = Libration(fullMoon.date);
+        if (lib.dist_km < 362000) {
+          this.supermoonDate = moment(fullMoon.date).fromNow();
+          this.supermoonDistKm = Math.round(lib.dist_km);
+          break;
+        }
+        searchFrom = new Date(fullMoon.date.getTime() + 24 * 60 * 60 * 1000);
+      } else {
+        break;
       }
     }
   }
