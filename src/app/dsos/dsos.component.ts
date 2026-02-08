@@ -3,12 +3,13 @@ import { AstronomyService } from '../services/astronomy.service';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DSO } from '../interfaces/app.interface';
 import { PrettyTimePipe } from "../pretty-time.pipe";
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-dsos',
   templateUrl: './dsos.component.html',
   styleUrl: './dsos.component.scss',
-  imports: [FormsModule, ReactiveFormsModule, PrettyTimePipe],
+  imports: [FormsModule, ReactiveFormsModule, PrettyTimePipe, DatePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 
 })

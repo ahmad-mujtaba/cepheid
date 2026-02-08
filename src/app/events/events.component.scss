@@ -34,7 +34,7 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(170, 0, 0, 0.02);
   border: 1px solid var(--border-subtle);
   border-radius: 8px;
   padding: 0.75rem 1rem;
@@ -42,7 +42,7 @@
 
   &:hover {
     border-color: var(--primary-color-light);
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(170, 0, 0, 0.05);
   }
 }
 
@@ -53,15 +53,15 @@
   flex-shrink: 0;
 
   &.season {
-    background: #d4a53c;
+    background: #880000;
   }
 
   &.lunar-eclipse {
-    background: #c43c3c;
+    background: #aa0000;
   }
 
   &.solar-eclipse {
-    background: #e8e4d8;
+    background: #cc0000;
   }
 }
 

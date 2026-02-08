@@ -2,27 +2,27 @@
 @use '@angular/material' as mat;
 
 :root {
-  --main-bg-color: #0a0a0a;
-  --card-bg-color: #111111;
-  --card-bg-hover: #161616;
-  --primary-color: #c43c3c;
-  --primary-color-light: #8a3030;
-  --primary-color-dark: #5a1f1f;
-  --text-primary: #e8e8e8;
-  --text-secondary: #888888;
-  --text-muted: #555555;
-  --border-color: #2a1515;
-  --border-subtle: #1a1010;
+  --main-bg-color: #000000;
+  --card-bg-color: #000000;
+  --card-bg-hover: #0a0000;
+  --primary-color: #aa0000;
+  --primary-color-light: #880000;
+  --primary-color-dark: #440000;
+  --text-primary: #cc0000;
+  --text-secondary: #880000;
+  --text-muted: #550000;
+  --border-color: #330000;
+  --border-subtle: #1a0000;
 
   @include mat.checkbox-overrides((
     label-text-color: var(--primary-color),
-    selected-checkmark-color: #fff,
+    selected-checkmark-color: #cc0000,
     selected-icon-color: var(--primary-color),
     selected-focus-icon-color: var(--primary-color),
     selected-hover-icon-color: var(--primary-color),
-    unselected-icon-color: #444,
-    unselected-focus-icon-color: #666,
-    unselected-hover-icon-color: #666,
+    unselected-icon-color: #330000,
+    unselected-focus-icon-color: #550000,
+    unselected-hover-icon-color: #550000,
   ));
 }
 
@@ -116,7 +116,7 @@ html, body {
 
   .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--primary-color-dark), var(--primary-color));
+    background: linear-gradient(90deg, #550000, #aa0000);
     border-radius: 2px;
     transition: width 0.3s ease;
   }

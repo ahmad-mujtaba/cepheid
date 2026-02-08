@@ -48,6 +48,8 @@ export interface DSOVisibility {
     visibleTonight: boolean,
     transitTime: AstroTime | null,
     transitAltitude: number,
+    visibleFrom: Date | null,
+    visibleUntil: Date | null,
 }
 
 export interface PlanetInfo {

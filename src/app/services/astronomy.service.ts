@@ -70,7 +70,7 @@ export class AstronomyService {
       } catch (_) {}
 
       if (!this.nextDarkTime || !this.nextDawnTime) {
-        return { setTime: null, riseTime: null, visibleDuration: 0, visibleTonight: false, transitTime, transitAltitude };
+        return { setTime: null, riseTime: null, visibleDuration: 0, visibleTonight: false, transitTime, transitAltitude, visibleFrom: null, visibleUntil: null };
       }
 
       // Determine dark window
@@ -99,17 +99,22 @@ export class AstronomyService {
 
       let totalMinutes = 0;
       let visibleTonight = false;
+      let visibleFrom: Date | null = null;
+      let visibleUntil: Date | null = null;
 
       if (isUpAtStart) {
         if (setTime) {
           // Object is up at start, then sets
           const firstSegmentMs = setTime.date.getTime() - darkStart.date.getTime();
           totalMinutes += firstSegmentMs / 60000;
+          visibleFrom = darkStart.date;
+          visibleUntil = setTime.date;
 
           if (riseTime && riseTime.tt > setTime.tt) {
             // Case A: rises again after setting — add second segment to dawn
             const secondSegmentMs = darkEnd.date.getTime() - riseTime.date.getTime();
             totalMinutes += secondSegmentMs / 60000;
+            visibleUntil = darkEnd.date;
             visibleTonight = true;
           }
           // Case B: sets and doesn't rise again
@@ -117,17 +122,22 @@ export class AstronomyService {
         } else {
           // Case C: up all night (circumpolar or never sets during dark window)
           totalMinutes = (darkEnd.date.getTime() - darkStart.date.getTime()) / 60000;
+          visibleFrom = darkStart.date;
+          visibleUntil = darkEnd.date;
           visibleTonight = true;
         }
       } else {
         // Object is below horizon at dark start
         if (riseTime) {
+          visibleFrom = riseTime.date;
           if (setTime && setTime.tt > riseTime.tt) {
             // Case D: rises then sets
             totalMinutes = (setTime.date.getTime() - riseTime.date.getTime()) / 60000;
+            visibleUntil = setTime.date;
           } else {
             // Case E: rises, up through dawn
             totalMinutes = (darkEnd.date.getTime() - riseTime.date.getTime()) / 60000;
+            visibleUntil = darkEnd.date;
           }
           visibleTonight = true;
         }
@@ -143,6 +153,8 @@ export class AstronomyService {
         visibleTonight,
         transitTime,
         transitAltitude,
+        visibleFrom,
+        visibleUntil,
       };
     } catch (ex) {
       console.error('error while processing ' + o.common_name);
@@ -155,6 +167,8 @@ export class AstronomyService {
       visibleTonight: false,
       transitTime: null,
       transitAltitude: 0,
+      visibleFrom: null,
+      visibleUntil: null,
     };
   }
 
@@ -199,8 +213,8 @@ export class AstronomyService {
   }
 
   getDsos(filter: any) {
-    return this.dsos.filter((dso, idx, dsos) => {
-      return filter[dso.supertype];
+    return this.dsos.filter((dso) => {
+      return filter[dso.supertype] && dso.visibility.visibleDuration >= 5 / 60;
     });
   }
 

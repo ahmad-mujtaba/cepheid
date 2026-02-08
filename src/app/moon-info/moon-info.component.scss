@@ -29,10 +29,10 @@
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: #1a1a1a;
+  background: #000000;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 0 12px rgba(180, 175, 160, 0.1);
+  box-shadow: 0 0 12px rgba(170, 0, 0, 0.15);
 
   // Waxing: lit portion grows from right
   .moon-lit {
@@ -40,7 +40,7 @@
     top: 0;
     right: 0;
     height: 100%;
-    background: linear-gradient(to left, #e8e4d8 0%, #d0ccc0 100%);
+    background: linear-gradient(to left, #aa0000 0%, #880000 100%);
     border-radius: 0 50% 50% 0;
     transition: width 0.3s ease;
   }
@@ -49,7 +49,7 @@
   &.waning .moon-lit {
     right: auto;
     left: 0;
-    background: linear-gradient(to right, #e8e4d8 0%, #d0ccc0 100%);
+    background: linear-gradient(to right, #aa0000 0%, #880000 100%);
     border-radius: 50% 0 0 50%;
   }
 }

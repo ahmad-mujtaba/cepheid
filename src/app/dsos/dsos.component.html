@@ -16,32 +16,37 @@
     <div class="dso-list">
         @for (dso of dsos; track dso.id) {
             <div class="dso-card">
-                <div class="dso-main">
-                    <div class="dso-name">{{dso.common_name || dso.catalogue}}</div>
-                    @if (dso.common_name) {
-                        <div class="dso-catalogue">{{dso.catalogue}}</div>
-                    }
+                <div class="dso-top">
+                    <div class="dso-identity">
+                        <div class="dso-name">{{dso.common_name || dso.catalogue}}</div>
+                        <div class="dso-sub">
+                            @if (dso.common_name) {
+                                <span>{{dso.catalogue}}</span>
+                                <span class="dso-sep">&middot;</span>
+                            }
+                            <span class="dso-type">{{dso.type}}</span>
+                        </div>
+                    </div>
+                    <span class="dso-duration">{{dso.visibility.visibleDuration | prettyTime}}</span>
                 </div>
                 <div class="dso-stats">
                     <div class="stat">
                         <span class="stat-label">mag</span>
                         <span class="stat-value">{{dso.magnitude}}</span>
-                        
-                    </div>
-                    <div class="stat">
-                        <span class="stat-label">visible</span>
-                        <span class="stat-value">{{dso.visibility.visibleDuration | prettyTime}}</span>
                     </div>
                     <div class="stat">
                         <span class="stat-label">peak</span>
-                        <span class="stat-value">{{dso.visibility.transitAltitude}}°</span>
+                        <span class="stat-value">{{dso.visibility.transitAltitude}}&deg;</span>
                     </div>
-                    <!-- <div class="stat">
-                        <span class="stat-value">{{dso.constellation}}</span>
-                        <span class="stat-label">const</span>
-                    </div> -->
-                    <div class="stat type-stat">
-                        <span class="dso-type">{{dso.type}}</span>
+                    <div class="stat">
+                        <span class="stat-label">window</span>
+                        <span class="stat-value">
+                            @if (dso.visibility.visibleFrom && dso.visibility.visibleUntil) {
+                                {{dso.visibility.visibleFrom | date:'HH:mm'}} &ndash; {{dso.visibility.visibleUntil | date:'HH:mm'}}
+                            } @else {
+                                &mdash;
+                            }
+                        </span>
                     </div>
                 </div>
             </div>
