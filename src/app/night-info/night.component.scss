@@ -20,8 +20,8 @@
   box-shadow: 0 0 8px var(--primary-color);
 
   &.daylight {
-    background: #880000;
-    box-shadow: 0 0 8px #880000;
+    background: var(--primary-color-light);
+    box-shadow: 0 0 8px var(--primary-color-light);
   }
 }
 

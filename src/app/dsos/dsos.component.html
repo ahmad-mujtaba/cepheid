@@ -27,7 +27,7 @@
                             <span class="dso-type">{{dso.type}}</span>
                         </div>
                     </div>
-                    <span class="dso-duration">{{dso.visibility.visibleDuration | prettyTime}}</span>
+                    <span class="dso-duration" [class.currently-visible]="dso.visibility.isCurrentlyVisible">{{dso.visibility.visibleDuration | prettyTime}}</span>
                 </div>
                 <div class="dso-stats">
                     <div class="stat">

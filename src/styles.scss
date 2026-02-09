@@ -13,6 +13,16 @@
   --text-muted: #550000;
   --border-color: #330000;
   --border-subtle: #1a0000;
+  --card-bg-tint: rgba(170, 0, 0, 0.02);
+  --card-bg-tint-hover: rgba(170, 0, 0, 0.05);
+  --header-gradient: linear-gradient(180deg, rgb(39 0 0 / 86%), transparent);
+  --accent-visible: #00cc66;
+  --accent-visible-glow: rgba(0, 204, 102, 0.4);
+  --moon-glow: rgba(170, 0, 0, 0.15);
+  --moon-lit-start: #aa0000;
+  --moon-lit-end: #880000;
+  --progress-start: #550000;
+  --progress-end: #aa0000;
 
   @include mat.checkbox-overrides((
     label-text-color: var(--primary-color),
@@ -23,6 +33,41 @@
     unselected-icon-color: #330000,
     unselected-focus-icon-color: #550000,
     unselected-hover-icon-color: #550000,
+  ));
+}
+
+[data-theme="dark"] {
+  --main-bg-color: #0d1117;
+  --card-bg-color: #161b22;
+  --card-bg-hover: #1c2333;
+  --primary-color: #2dd4bf;
+  --primary-color-light: #14b8a6;
+  --primary-color-dark: #134e4a;
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --text-muted: #484f58;
+  --border-color: #30363d;
+  --border-subtle: #21262d;
+  --card-bg-tint: rgba(45, 212, 191, 0.03);
+  --card-bg-tint-hover: rgba(45, 212, 191, 0.06);
+  --header-gradient: linear-gradient(180deg, rgba(13, 17, 23, 0.9), transparent);
+  --accent-visible: #22d3ee;
+  --accent-visible-glow: rgba(34, 211, 238, 0.4);
+  --moon-glow: rgba(45, 212, 191, 0.15);
+  --moon-lit-start: #2dd4bf;
+  --moon-lit-end: #14b8a6;
+  --progress-start: #134e4a;
+  --progress-end: #2dd4bf;
+
+  @include mat.checkbox-overrides((
+    label-text-color: var(--primary-color),
+    selected-checkmark-color: #2dd4bf,
+    selected-icon-color: var(--primary-color),
+    selected-focus-icon-color: var(--primary-color),
+    selected-hover-icon-color: var(--primary-color),
+    unselected-icon-color: #30363d,
+    unselected-focus-icon-color: #484f58,
+    unselected-hover-icon-color: #484f58,
   ));
 }
 
@@ -116,7 +161,7 @@ html, body {
 
   .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #550000, #aa0000);
+    background: linear-gradient(90deg, var(--progress-start), var(--progress-end));
     border-radius: 2px;
     transition: width 0.3s ease;
   }

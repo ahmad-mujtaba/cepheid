@@ -1,15 +1,21 @@
 header {
   padding: 1.25rem 1rem;
   border-bottom: 1px solid var(--border-color);
-  background: linear-gradient(180deg, rgb(39 0 0 / 86%), transparent);
+  background: var(--header-gradient);
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 0.5rem;
-  text-align: center;;
+  text-align: center;
 }
 
 .logo-icon {
@@ -24,6 +30,28 @@ header {
   text-transform: uppercase;
   letter-spacing: 0.15em;
   color: var(--primary-color);
+}
+
+.theme-toggle {
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: var(--primary-color-light);
+    color: var(--primary-color);
+  }
 }
 
 @keyframes twinkle {

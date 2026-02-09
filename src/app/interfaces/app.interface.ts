@@ -50,6 +50,7 @@ export interface DSOVisibility {
     transitAltitude: number,
     visibleFrom: Date | null,
     visibleUntil: Date | null,
+    isCurrentlyVisible: boolean,
 }
 
 export interface PlanetInfo {

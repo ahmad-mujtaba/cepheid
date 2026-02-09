@@ -70,7 +70,7 @@ export class AstronomyService {
       } catch (_) {}
 
       if (!this.nextDarkTime || !this.nextDawnTime) {
-        return { setTime: null, riseTime: null, visibleDuration: 0, visibleTonight: false, transitTime, transitAltitude, visibleFrom: null, visibleUntil: null };
+        return { setTime: null, riseTime: null, visibleDuration: 0, visibleTonight: false, transitTime, transitAltitude, visibleFrom: null, visibleUntil: null, isCurrentlyVisible: false };
       }
 
       // Determine dark window
@@ -107,14 +107,21 @@ export class AstronomyService {
           // Object is up at start, then sets
           const firstSegmentMs = setTime.date.getTime() - darkStart.date.getTime();
           totalMinutes += firstSegmentMs / 60000;
-          visibleFrom = darkStart.date;
           visibleUntil = setTime.date;
+
+          // Find actual rise time by searching backward from dark start
+          const noon = new Date(darkStart.date.getTime() - 12 * 3600000);
+          const actualRise = SearchAltitude(Body.Star1, this.observer!, 1, noon, 0.5, 0);
+          visibleFrom = actualRise ? actualRise.date : null;
 
           if (riseTime && riseTime.tt > setTime.tt) {
             // Case A: rises again after setting — add second segment to dawn
             const secondSegmentMs = darkEnd.date.getTime() - riseTime.date.getTime();
             totalMinutes += secondSegmentMs / 60000;
-            visibleUntil = darkEnd.date;
+
+            // Find actual set time after dawn
+            const actualSet = SearchAltitude(Body.Star1, this.observer!, -1, darkEnd.date, 0.5, 0);
+            visibleUntil = actualSet ? actualSet.date : null;
             visibleTonight = true;
           }
           // Case B: sets and doesn't rise again
@@ -122,8 +129,16 @@ export class AstronomyService {
         } else {
           // Case C: up all night (circumpolar or never sets during dark window)
           totalMinutes = (darkEnd.date.getTime() - darkStart.date.getTime()) / 60000;
-          visibleFrom = darkStart.date;
-          visibleUntil = darkEnd.date;
+
+          // Find actual rise time by searching backward from dark start
+          const noon = new Date(darkStart.date.getTime() - 12 * 3600000);
+          const actualRise = SearchAltitude(Body.Star1, this.observer!, 1, noon, 0.5, 0);
+          visibleFrom = actualRise ? actualRise.date : null;
+
+          // Find actual set time after dawn
+          const actualSet = SearchAltitude(Body.Star1, this.observer!, -1, darkEnd.date, 0.5, 0);
+          visibleUntil = actualSet ? actualSet.date : null;
+
           visibleTonight = true;
         }
       } else {
@@ -131,13 +146,16 @@ export class AstronomyService {
         if (riseTime) {
           visibleFrom = riseTime.date;
           if (setTime && setTime.tt > riseTime.tt) {
-            // Case D: rises then sets
+            // Case D: rises then sets — already actual times
             totalMinutes = (setTime.date.getTime() - riseTime.date.getTime()) / 60000;
             visibleUntil = setTime.date;
           } else {
             // Case E: rises, up through dawn
             totalMinutes = (darkEnd.date.getTime() - riseTime.date.getTime()) / 60000;
-            visibleUntil = darkEnd.date;
+
+            // Find actual set time after dawn
+            const actualSet = SearchAltitude(Body.Star1, this.observer!, -1, darkEnd.date, 0.5, 0);
+            visibleUntil = actualSet ? actualSet.date : null;
           }
           visibleTonight = true;
         }
@@ -145,6 +163,13 @@ export class AstronomyService {
       }
 
       const visibleHours = Math.round((totalMinutes / 60) * 100) / 100;
+
+      // Compute isCurrentlyVisible
+      let isCurrentlyVisible = false;
+      if (!this.isDaylight) {
+        const horizonNow = Horizon(new AstroTime(new Date()), this.observer!, raHours, decDeg, 'normal');
+        isCurrentlyVisible = horizonNow.altitude > 0;
+      }
 
       return {
         setTime,
@@ -155,6 +180,7 @@ export class AstronomyService {
         transitAltitude,
         visibleFrom,
         visibleUntil,
+        isCurrentlyVisible,
       };
     } catch (ex) {
       console.error('error while processing ' + o.common_name);
@@ -169,6 +195,7 @@ export class AstronomyService {
       transitAltitude: 0,
       visibleFrom: null,
       visibleUntil: null,
+      isCurrentlyVisible: false,
     };
   }
 
