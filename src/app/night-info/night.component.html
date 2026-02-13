@@ -1,14 +1,25 @@
 <div class="card night-card">
-    <div class="card-label">
-        <span class="status-dot" [class.daylight]="isDaylight"></span>
-        <!-- {{isDaylight ? 'Daylight' : 'Night'}} -->
-        At a glance
-    </div>
 
-    <div class="countdown">
-        <div class="countdown-label">{{isDaylight ? 'Dark in' : 'Dawn in'}}</div>
-        <div class="countdown-value">{{timeToChangeStr}}</div>
-        <div class="countdown-target">at {{nextTimeStr}}</div>
+    <div class="night-content">
+        <div class="countdown">
+            <div class="countdown-label">
+                <span class="status-dot" [class.daylight]="isDaylight"></span>
+                {{isDaylight ? 'Dark at' : 'Dawn at'}} {{nextTimeStr}} in</div>
+            <div class="countdown-value">{{timeToChangeStr}}</div>
+        </div>
+
+        <div class="polar-scope">
+            <svg viewBox="0 0 80 80" class="polar-reticle">
+                <circle cx="40" cy="40" r="36" class="reticle-ring"/>
+                <line x1="40" y1="2" x2="40" y2="78" class="reticle-cross"/>
+                <line x1="2" y1="40" x2="78" y2="40" class="reticle-cross"/>
+                <circle cx="40" cy="40" r="20" class="polaris-orbit"/>
+                <circle cx="40" cy="40" r="1.5" class="ncp-dot"/>
+                <circle [attr.cx]="polarisX" [attr.cy]="polarisY" r="3" class="polaris-dot"/>
+            </svg>
+            <span class="polar-label">Polaris HA</span>
+            <span class="polar-ha">{{polarisHAStr}}</span>
+        </div>
     </div>
 
     <div class="sun-info">

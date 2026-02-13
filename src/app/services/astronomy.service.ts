@@ -246,6 +246,17 @@ export class AstronomyService {
     });
   }
 
+  searchDsos(query: string, typeFilter: any): DSO[] {
+    const q = query.toLowerCase().trim();
+    return this.dsos.filter(dso => {
+      const matchesType = typeFilter[dso.supertype];
+      const matchesQuery = !q ||
+        dso.common_name.toLowerCase().includes(q) ||
+        dso.catalogue.toLowerCase().includes(q);
+      return matchesType && matchesQuery;
+    });
+  }
+
   sortByMagnitude() {
     this.dsos = this.dsos.sort((a, b) => {
       if (a.magnitude != b.magnitude) {

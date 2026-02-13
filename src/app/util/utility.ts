@@ -28,11 +28,11 @@ export const durationToString: any = (duration: Duration, separator: string = ',
     }
 
     if (Math.abs(duration.hours()) > 0) {
-      str.push(`${Math.abs(duration.hours())} hour${suffixS(Math.abs(duration.hours()))}`);
+      str.push(`${Math.abs(duration.hours())} h`);
     }
 
     if (Math.abs(duration.minutes()) > 0) {
-      str.push(`${Math.abs(duration.minutes())} minute${suffixS(Math.abs(duration.minutes()))}`);
+      str.push(`${Math.abs(duration.minutes())} m`);
     }
     return str.join(separator);
   }

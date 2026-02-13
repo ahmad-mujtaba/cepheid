@@ -3,6 +3,7 @@ export const DEFAULT_LONGITUDE = 78.5;
 export const DARK_ALTITUDE = -18;
 export const DAWN_ALTITUDE  = 18;
 export const FORMAT_TIME = "h:mma";
+export const FORMAT_TIME_SHORT = "h:mma";
 export const FORMAT_TIME_AND_DATE = "h:mma on D MMM";
 
 export const MOON_PHASES = {

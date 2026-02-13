@@ -24,6 +24,7 @@ export class DsosComponent implements OnInit {
 
   types:Set<string> = new Set();
   dsos: Array<DSO> = [];
+  searchQuery: string = '';
   private readonly _formBuilder = inject(FormBuilder);
 
   selectedTypes = this._formBuilder.group({
@@ -44,9 +45,25 @@ export class DsosComponent implements OnInit {
 
   }
 
+  onSearch(query: string) {
+    this.searchQuery = query;
+    this.render();
+    this._cdr.markForCheck();
+  }
+
+  clearSearch() {
+    this.searchQuery = '';
+    this.render();
+    this._cdr.markForCheck();
+  }
+
   render() {
     this.astronomyService.sortByMagnitude();
-    this.dsos = this.astronomyService.getDsos(this.selectedTypes.value);
+    if (this.searchQuery) {
+      this.dsos = this.astronomyService.searchDsos(this.searchQuery, this.selectedTypes.value);
+    } else {
+      this.dsos = this.astronomyService.getDsos(this.selectedTypes.value);
+    }
     this.types = this.astronomyService.getTypes();
   }
 

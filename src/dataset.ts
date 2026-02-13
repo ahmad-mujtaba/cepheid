@@ -1147,16 +1147,6 @@ export const celestialObjects : Array<CelestialObject> = [
         "constellation": "Draco"
     },
     {
-        "catalogue": "NGC 7293",
-        "common_name": "Helix Nebula",
-        "type": "Planetary Nebula",
-        "magnitude": 7.3,
-        "dimensions": "25",
-        "ra": "22h 29m 38s",
-        "dec": "-20° 50' 14\"",
-        "constellation": "Aquarius"
-    },
-    {
         "catalogue": "NGC 2264",
         "common_name": "Cone Nebula",
         "type": "Emission Nebula",
