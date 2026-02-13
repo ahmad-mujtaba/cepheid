@@ -21,7 +21,7 @@ export class ThemeService {
 
   private loadTheme(): Theme {
     const saved = localStorage.getItem('cepheid-theme');
-    return saved === 'dark' ? 'dark' : 'red';
+    return saved === 'red' ? 'red' : 'dark';
   }
 
   private applyTheme(theme: Theme) {

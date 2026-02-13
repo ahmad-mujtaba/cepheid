@@ -1107,16 +1107,6 @@ export const celestialObjects : Array<CelestialObject> = [
         "constellation": "Andromeda"
     },
     {
-        "catalogue": "IC 434",
-        "common_name": "Horsehead Nebula",
-        "type": "Dark Nebula",
-        "magnitude": 6.8,
-        "dimensions": "8x6",
-        "ra": "05h 40m 59s",
-        "dec": "-02° 27' 30\"",
-        "constellation": "Orion"
-    },
-    {
         "catalogue": "NGC 2024",
         "common_name": "Flame Nebula",
         "type": "Emission Nebula",
@@ -1137,16 +1127,6 @@ export const celestialObjects : Array<CelestialObject> = [
         "constellation": "Perseus"
     },
     {
-        "catalogue": "NGC 7635",
-        "common_name": "Bubble Nebula",
-        "type": "Emission Nebula",
-        "magnitude": 10.0,
-        "dimensions": "15x8",
-        "ra": "23h 20m 48s",
-        "dec": "+61° 12' 06\"",
-        "constellation": "Cassiopeia"
-    },
-    {
         "catalogue": "NGC 2359",
         "common_name": "Thor's Helmet",
         "type": "Emission Nebula",
@@ -1155,26 +1135,6 @@ export const celestialObjects : Array<CelestialObject> = [
         "ra": "07h 18m 30s",
         "dec": "-13° 13' 48\"",
         "constellation": "Canis Major"
-    },
-    {
-        "catalogue": "NGC 7023",
-        "common_name": "Iris Nebula",
-        "type": "Reflection Nebula",
-        "magnitude": 6.8,
-        "dimensions": "18x18",
-        "ra": "21h 01m 36s",
-        "dec": "+68° 10' 10\"",
-        "constellation": "Cepheus"
-    },
-    {
-        "catalogue": "NGC 2392",
-        "common_name": "Eskimo Nebula",
-        "type": "Planetary Nebula",
-        "magnitude": 9.1,
-        "dimensions": "0.8x0.7",
-        "ra": "07h 29m 11s",
-        "dec": "+20° 54' 42\"",
-        "constellation": "Gemini"
     },
     {
         "catalogue": "NGC 6543",
@@ -1275,16 +1235,6 @@ export const celestialObjects : Array<CelestialObject> = [
         "ra": "03h 33m 36s",
         "dec": "-36° 08' 25\"",
         "constellation": "Fornax"
-    },
-    {
-        "catalogue": "NGC 5128",
-        "common_name": "Centaurus A",
-        "type": "Elliptical Galaxy",
-        "magnitude": 6.8,
-        "dimensions": "25x20",
-        "ra": "13h 25m 28s",
-        "dec": "-43° 01' 09\"",
-        "constellation": "Centaurus"
     },
     {
         "catalogue": "NGC 253",

@@ -18,6 +18,9 @@
             <div class="dso-card">
                 <div class="dso-top">
                     <div class="dso-identity">
+                        <div class="dso-sub">
+                            
+                        </div>
                         <div class="dso-name">{{dso.common_name || dso.catalogue}}</div>
                         <div class="dso-sub">
                             @if (dso.common_name) {
@@ -25,6 +28,7 @@
                                 <span class="dso-sep">&middot;</span>
                             }
                             <span class="dso-type">{{dso.type}}</span>
+                            
                         </div>
                     </div>
                     <span class="dso-duration" [class.currently-visible]="dso.visibility.isCurrentlyVisible">{{dso.visibility.visibleDuration | prettyTime}}</span>
@@ -47,6 +51,10 @@
                                 &mdash;
                             }
                         </span>
+                    </div>
+                     <div class="stat">
+                        <span class="stat-label">RA/DEC</span>
+                        <span class="stat-value">{{dso.loc}}&deg;</span>
                     </div>
                 </div>
             </div>

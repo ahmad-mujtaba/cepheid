@@ -31,7 +31,8 @@ export interface DSO extends CelestialObject {
     id: string,
     supertype: DSO_TYPE,
     size: number,
-    visibility: DSOVisibility
+    visibility: DSOVisibility,
+    loc: string,
 }
 
 export enum DSO_TYPE {

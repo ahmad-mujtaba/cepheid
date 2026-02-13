@@ -33,8 +33,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Draco"
     },
     {
-        "catalogue": "C4",
-        "common_name": "NGC 7023 (Iris Nebula)",
+        "catalogue": "C4 / NGC 7023",
+        "common_name": "Iris Nebula",
         "type": "Reflection Nebula",
         "magnitude": 6.8,
         "dimensions": "18'x18'",
@@ -53,8 +53,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Camelopardalis"
     },
     {
-        "catalogue": "C6",
-        "common_name": "NGC 6543 (Cat's Eye Nebula)",
+        "catalogue": "C6 / NGC 6543",
+        "common_name": "Cat's Eye Nebula",
         "type": "Planetary Nebula",
         "magnitude": 8.1,
         "dimensions": "20\"x15\"",
@@ -103,8 +103,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Cassiopeia"
     },
     {
-        "catalogue": "C11",
-        "common_name": "NGC 7635 (Bubble Nebula)",
+        "catalogue": "C11 / NGC 7635",
+        "common_name": "Bubble Nebula",
         "type": "Emission Nebula",
         "magnitude": 10.0,
         "dimensions": "15'x8'",
@@ -183,8 +183,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Cassiopeia"
     },
     {
-        "catalogue": "C19",
-        "common_name": "IC 5146 (Cocoon Nebula)",
+        "catalogue": "C19 / IC 5146 ",
+        "common_name": "Cocoon Nebula",
         "type": "Reflection/Emission Nebula",
         "magnitude": 7.2,
         "dimensions": "12'x12'",
@@ -193,8 +193,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Cygnus"
     },
     {
-        "catalogue": "C20",
-        "common_name": "North America Nebula (NGC 7000)",
+        "catalogue": "C20 / NGC 7000",
+        "common_name": "North America Nebula",
         "type": "Emission Nebula",
         "magnitude": 4.0,
         "dimensions": "120'x100'",
@@ -213,8 +213,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Canes Venatici"
     },
     {
-        "catalogue": "C22",
-        "common_name": "NGC 7662 (Blue Snowball Nebula)",
+        "catalogue": "C22 / NGC 7662 ",
+        "common_name": "Blue Snowball Nebula",
         "type": "Planetary Nebula",
         "magnitude": 8.3,
         "dimensions": "37\"x32\"",
@@ -303,8 +303,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Pegasus"
     },
     {
-        "catalogue": "C31",
-        "common_name": "IC 405 (Flaming Star Nebula)",
+        "catalogue": "C31 / IC 405",
+        "common_name": "Flaming Star Nebula",
         "type": "Emission/Reflection Nebula",
         "magnitude": 6.0,
         "dimensions": "30'x19'",
@@ -383,8 +383,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Coma Berenices"
     },
     {
-        "catalogue": "C39",
-        "common_name": "NGC 2392 (Eskimo Nebula)",
+        "catalogue": "C39 / NGC 2392",
+        "common_name": "Eskimo Nebula",
         "type": "Planetary Nebula",
         "magnitude": 9.2,
         "dimensions": "47\"x43\"",
@@ -404,7 +404,7 @@ export const caldwellObjects: Array<CelestialObject> = [
     },
     {
         "catalogue": "C41",
-        "common_name": "Hyades (Mel 25)",
+        "common_name": "Hyades",
         "type": "Open Cluster",
         "magnitude": 0.5,
         "dimensions": "330'",
@@ -453,8 +453,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Boötes"
     },
     {
-        "catalogue": "C46",
-        "common_name": "NGC 2261 (Hubble's Variable Nebula)",
+        "catalogue": "C46 / NGC 2261",
+        "common_name": "Hubble's Variable Nebula",
         "type": "Reflection Nebula",
         "magnitude": 9.0,
         "dimensions": "2'x1'",
@@ -483,8 +483,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Cancer"
     },
     {
-        "catalogue": "C49",
-        "common_name": "NGC 2237 (Rosette Nebula)",
+        "catalogue": "C49 / NGC 2237",
+        "common_name": "Rosette Nebula",
         "type": "Emission Nebula",
         "magnitude": 9.0,
         "dimensions": "80'x60'",
@@ -553,8 +553,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Aquarius"
     },
     {
-        "catalogue": "C56",
-        "common_name": "NGC 246 (Skull Nebula)",
+        "catalogue": "C56 / NGC 246",
+        "common_name": "Skull Nebula",
         "type": "Planetary Nebula",
         "magnitude": 8.5,
         "dimensions": "3.8'x3.5'",
@@ -563,8 +563,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Cetus"
     },
     {
-        "catalogue": "C57",
-        "common_name": "NGC 6822 (Barnard's Galaxy)",
+        "catalogue": "C57 / NGC 6822",
+        "common_name": "Barnard's Galaxy",
         "type": "Irregular Galaxy",
         "magnitude": 8.8,
         "dimensions": "16'x13'",
@@ -583,8 +583,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Canis Major"
     },
     {
-        "catalogue": "C59",
-        "common_name": "NGC 3242 (Ghost of Jupiter)",
+        "catalogue": "C59 / NGC 3242",
+        "common_name": "Ghost of Jupiter",
         "type": "Planetary Nebula",
         "magnitude": 7.3,
         "dimensions": "40\"x35\"",
@@ -593,8 +593,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Hydra"
     },
     {
-        "catalogue": "C60",
-        "common_name": "NGC 4038/4039 (Antennae Galaxies)",
+        "catalogue": "C60 / NGC 4038",
+        "common_name": "Antennae Galaxies",
         "type": "Interacting Galaxies",
         "magnitude": 10.3,
         "dimensions": "5.2'x3.1'",
@@ -603,8 +603,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Corvus"
     },
     {
-        "catalogue": "C61",
-        "common_name": "NGC 4039 (Antennae Galaxy)",
+        "catalogue": "C61 / NGC 4039",
+        "common_name": "Antennae Galaxy",
         "type": "Interacting Galaxy",
         "magnitude": 10.7,
         "dimensions": "3.1'x1.6'",
@@ -613,8 +613,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Corvus"
     },
     {
-        "catalogue": "C62",
-        "common_name": "Claw Galaxy (NGC 247)",
+        "catalogue": "C62 / NGC 247",
+        "common_name": "Claw Galaxy",
         "type": "Spiral Galaxy",
         "magnitude": 9.1,
         "dimensions": "21.4'x6.9'",
@@ -623,8 +623,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Cetus"
     },
     {
-        "catalogue": "C63",
-        "common_name": "NGC 7293 (Helix Nebula)",
+        "catalogue": "C63 / NGC 7293",
+        "common_name": "Helix Nebula",
         "type": "Planetary Nebula",
         "magnitude": 7.6,
         "dimensions": "16.0'x12.0'",
@@ -683,8 +683,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Corona Australis"
     },
     {
-        "catalogue": "C69",
-        "common_name": "NGC 6302 (Bug Nebula)",
+        "catalogue": "C69 / NGC 6302",
+        "common_name": "Bug Nebula",
         "type": "Planetary Nebula",
         "magnitude": 9.6,
         "dimensions": "1.8'x0.7'",
@@ -733,8 +733,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Columba"
     },
     {
-        "catalogue": "C74",
-        "common_name": "NGC 3132 (Eight-Burst Nebula)",
+        "catalogue": "C74 / NGC 3132",
+        "common_name": "Eight-Burst Nebula",
         "type": "Planetary Nebula",
         "magnitude": 9.2,
         "dimensions": "1.2'x0.8'",
@@ -763,8 +763,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Scorpius"
     },
     {
-        "catalogue": "C77",
-        "common_name": "NGC 5128 (Centaurus A)",
+        "catalogue": "C77 / NGC 5128",
+        "common_name": "Centaurus A",
         "type": "Lenticular Galaxy",
         "magnitude": 6.8,
         "dimensions": "25.7'x20.0'",
@@ -793,8 +793,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Vela"
     },
     {
-        "catalogue": "C80",
-        "common_name": "NGC 5139 (Omega Centauri)",
+        "catalogue": "C80 / NGC 5139",
+        "common_name": "Omega Centauri",
         "type": "Globular Cluster",
         "magnitude": 3.9,
         "dimensions": "36'",
@@ -843,8 +843,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Lupus"
     },
     {
-        "catalogue": "C85",
-        "common_name": "IC 2391 (Omicron Velorum Cluster)",
+        "catalogue": "C85 / IC 2391",
+        "common_name": "Omicron Velorum Cluster",
         "type": "Open Cluster",
         "magnitude": 2.5,
         "dimensions": "50'",
@@ -913,8 +913,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Lupus"
     },
     {
-        "catalogue": "C92",
-        "common_name": "NGC 3372 (Eta Carinae Nebula)",
+        "catalogue": "C92 / NGC 3372 ",
+        "common_name": "Carina Nebula",
         "type": "Emission Nebula",
         "magnitude": 1.0,
         "dimensions": "120'x120'",
@@ -933,8 +933,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Pavo"
     },
     {
-        "catalogue": "C94",
-        "common_name": "Jewel Box Cluster (NGC 4755)",
+        "catalogue": "C94 / NGC 4755",
+        "common_name": "Jewel Box Cluster",
         "type": "Open Cluster",
         "magnitude": 4.2,
         "dimensions": "25'x20'",
@@ -993,8 +993,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Centaurus"
     },
     {
-        "catalogue": "C100",
-        "common_name": "IC 2944 (Running Chicken Nebula)",
+        "catalogue": "C100 / IC 2944",
+        "common_name": "Running Chicken Nebula",
         "type": "Emission Nebula",
         "magnitude": 4.5,
         "dimensions": "75'x50'",
@@ -1013,8 +1013,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Pavo"
     },
     {
-        "catalogue": "C102",
-        "common_name": "IC 2602 (Southern Pleiades)",
+        "catalogue": "C102 / IC 2602",
+        "common_name": "Southern Pleiades",
         "type": "Open Cluster",
         "magnitude": 1.9,
         "dimensions": "50'",
@@ -1023,8 +1023,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Carina"
     },
     {
-        "catalogue": "C103",
-        "common_name": "NGC 2070 (Tarantula Nebula)",
+        "catalogue": "C103 / NGC 2070",
+        "common_name": "Tarantula Nebula",
         "type": "Emission Nebula",
         "magnitude": 8.0,
         "dimensions": "40'",
@@ -1093,7 +1093,7 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Chamaeleon"
     },
     {
-        "catalogue": "C110*",
+        "catalogue": "NGC 1399",
         "common_name": "NGC 1399",
         "type": "Elliptical Galaxy",
         "magnitude": 9.9,
@@ -1103,7 +1103,7 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Fornax"
     },
     {
-        "catalogue": "C111*",
+        "catalogue": "NGC 1553",
         "common_name": "NGC 1553",
         "type": "Lenticular Galaxy",
         "magnitude": 9.4,
@@ -1113,8 +1113,8 @@ export const caldwellObjects: Array<CelestialObject> = [
         "constellation": "Dorado"
     },
     {
-        "catalogue": "C112*",
-        "common_name": "NGC 2442",
+        "catalogue": "NGC 2442",
+        "common_name": "Meathook Galaxy",
         "type": "Spiral Galaxy",
         "magnitude": 10.4,
         "dimensions": "5.5'x4.9'",

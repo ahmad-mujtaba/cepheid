@@ -47,6 +47,7 @@ export class AstronomyService {
         supertype: this.getSuperType(obj),
         size: this.calculateSize(obj),
         visibility: visibility,
+        loc: obj.ra + ' ' + obj.dec,
         ...obj,
       }
       this.dsos.push(dso);

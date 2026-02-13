@@ -6,7 +6,7 @@ export const astrophotoObjects: Array<CelestialObject> = [
 
     // === DARK NEBULAE ===
     {
-        "catalogue": "B33",
+        "catalogue": "B33 / IC 434",
         "common_name": "Horsehead Nebula",
         "type": "Dark Nebula",
         "magnitude": 6.8,
@@ -388,16 +388,6 @@ export const astrophotoObjects: Array<CelestialObject> = [
         "ra": "11h 20m 17s",
         "dec": "+13° 35' 23\"",
         "constellation": "Leo"
-    },
-    {
-        "catalogue": "NGC 6822",
-        "common_name": "Barnard's Galaxy",
-        "type": "Irregular Galaxy",
-        "magnitude": 8.8,
-        "dimensions": "16'x14'",
-        "ra": "19h 44m 57s",
-        "dec": "-14° 48' 12\"",
-        "constellation": "Sagittarius"
     },
     {
         "catalogue": "NGC 3521",
